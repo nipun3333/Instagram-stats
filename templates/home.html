@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="margin-class">
+    <div class="jumbotron text-center">
+      {% if user.is_authenticated %}
+        <h1> Welcome {{user.username}} </h1>
+      {% else %}
+        <h1> Welcome </h1>
+        <a href="/register" class="btn btn-success">Register</a>
+        <a href="/login" class="btn btn-primary">Login</a>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

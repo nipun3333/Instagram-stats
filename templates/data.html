@@ -1,0 +1,155 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    
+    <div class="margin-class">
+        <h1> DATA </h1>
+
+        <script>
+
+            function paginate_func(pg_num){
+                url = window.location.href
+                if(url.includes('page')){
+                    var mn = url.indexOf('page');
+                    mn+=5;
+                    if(url.indexOf('&', mn)==-1){
+                        var pre = url.slice(0, mn);
+                        url = pre+pg_num;
+                    }
+                    else{
+                        var pre = url.slice(0, mn);
+                        var post = url.slice(url.indexOf('&', mn),url.length);
+                        url = pre+pg_num+post;
+                    }
+                }
+                else{
+                    if(url.indexOf('?')==-1){
+                        url+=("?page="+pg_num);
+                    }
+                    else{
+                        url+=("&page="+pg_num)
+                    }
+                }
+                window.location.href=url;
+            }
+
+            $( function() {
+                $( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 4000000,
+                    values: [new URLSearchParams(window.location.search).get('followers-min'), (!(new URLSearchParams(window.location.search).has('followers-max')))?4000000:(new URLSearchParams(window.location.search).get('followers-max')) ],
+                    slide: function( event, ui ) {
+                        $( "#amount-followers" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+                    },
+                    stop: function( event, ui ) {
+                        var url = window.location.href;
+                        if(url.includes('page')){
+                            var mn = url.indexOf('page');
+                            mn+=5;
+                            
+                            if(url.indexOf('&', mn)==-1){
+                                var pre = url.slice(0, mn);
+                                url = pre+'1';
+                            }
+                            else{
+                                var pre = url.slice(0, mn);
+                                var post = url.slice(url.indexOf('&', mn),url.length);
+                                url = pre+'1'+post;
+                            }
+                        }
+                        if(url.includes("?") && !url.includes("followers-min")){
+                            url += ("&followers-min="+ui.values[0]+'&'+"followers-max="+ui.values[1]);
+                        }
+                        else if(!url.includes("?") && !url.includes("followers-min")){
+                            url += ("?followers-min="+ui.values[0]+'&'+"followers-max="+ui.values[1]);
+                        }
+                        else if(url.includes("?")){
+                            var ind_mn_st = url.indexOf("followers-min");
+                            ind_mn_st+=14;
+                            var ind_mn_en = url.indexOf("&",ind_mn_st);
+                            var pre = url.slice(0, ind_mn_st);
+                            var post = url.slice(ind_mn_en, url.length);
+                            var url = (pre+ui.values[0]+post);
+                            var ind_mx_st = url.indexOf("followers-max");
+                            ind_mx_st+=14;
+                            if(url.indexOf("&", ind_mx_st)==-1){
+                                var pre = url.slice(0, ind_mx_st);
+                                url = (pre+ui.values[1]);
+                            }
+                            else{
+                                var ind_mx_en = url.indexOf("&", ind_mx_st);
+                                var pre = url.slice(0, ind_mx_st);
+                                var post = url.slice(ind_mx_en, url.length);
+                                url = (pre+ui.values[1]+post);
+                            }
+                        }
+                        window.location.href = url;
+                    }
+                });
+                $( "#amount-followers" ).val($( "#slider-range" ).slider( "values", 0 ) + " - " + $( "#slider-range" ).slider( "values", 1 ) );
+            } );
+
+            
+
+        </script>
+
+            <p>
+                <label for="amount-followers">Followers Range:</label>
+                <input type="text" id="amount-followers" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+
+        <div id="slider-range"></div>
+        
+
+        <div class="data">
+            <hr>
+            <table class="table">
+                <tr class="heading">
+                    <th>Index</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Followers</th>
+                    <th>Followings</th>
+                    <th>Biography</th>
+                </tr>
+
+                {% for user in users %}
+                <div>     
+                        <tr>
+                            <td> {{forloop.counter}} </td>
+                            <td> {{user.username}} </td>
+                            <td> {{user.full_name}} </td>
+                            <td> {{user.followers}} </td>
+                            <td> {{user.followings}} </td>
+                            <td> {{user.bio}} </td>
+                            
+                        </tr>       
+                </div>
+                {% endfor %}
+            </table>
+            </hr>
+        </div>
+
+            <div class="pagination">
+                {% if users.has_previous %}
+                    <button class="page button" onclick="paginate_func('1')">First</button>
+                    <button class="page button" onclick="paginate_func('{{ users.previous_page_number}}')">Previous</button>
+                {% endif %}
+
+                {% for num in users.paginator.page_range %}
+                    {% if users.number == num %}
+                        <button class="page button-selected" onclick="paginate_func('{{ num }}')">{{num}}</button>
+                    {% elif num > users.number|add:'-3' and num < users.number|add:'3' %}
+                        <button class="page button" onclick="paginate_func('{{ num }}')">{{num}}</button>
+                    {% endif %}
+                {% endfor %}
+
+                {% if users.has_next %}
+                    <button class="page button" onclick="paginate_func('{{ users.next_page_number}}')">Next</button>
+                    <button class="page button" onclick="paginate_func('{{ users.paginator.num_pages}}')">Last</button>
+                {% endif %}
+            </div>
+    </div>
+
+{% endblock %}

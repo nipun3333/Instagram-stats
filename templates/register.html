@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="margin-class">
+    <div class="form">
+    
+    <h1>Register</h1>
+    
+    <form method="POST">
+    {% csrf_token %}
+        
+        <div class="field">
+          <label class="write">username</label>
+          <input class="inp" type="text" name="username"></input>
+        </div>
+
+        <div class="field">
+          <label class="write">email</label>
+          <input class="inp" type="text" name="email"></input>
+        </div>
+
+        <div class="field">
+          <label class="write">password</label>
+          <input class="inp" type="password" name="password"></input>
+        </div>
+
+        <div class="field">
+          <button class="btn-f" type="submit">Register</button>
+        </div>
+
+
+    </form>
+      </div>
+  </div>
+
+{% endblock %}
