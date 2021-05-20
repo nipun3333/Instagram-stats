@@ -1,0 +1,24 @@
+To connect with server enter below command
+--> python manage.py runserver
+
+The first page is home page and in that page you will see a navigation bar which includes
+anchor tags of home, register and login.
+
+If you click on register a new page will pop up and you can register yourself by providing
+username, email and password from that page
+
+after registering or by clicking on login, a new page will pop up and you can login yourself 
+from that page by providing username and password.
+
+after login again home page will pop up but in home page you will see navigation bar with 
+home, data and logout anchor tags and you will also see a message prompt with your username.
+
+by clicking on data, you will be rendered to a page where you can see the logs of instagram 
+accounts. These data will be divided into pages in which there will be 10 logs per page.
+
+you will be able to move through pages by clicking on the buttons below data.
+
+You can scroll the slider to set the range of the followers of data and the page will 
+automatically reloaded and filterd data will be displayed on the page.
+
+By clicking on the logout anchor tag you will be logged out and redireced to the home page.
