@@ -1,0 +1,643 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Flow of the Project</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="21240d9c-5945-4043-81df-955df8121230" class="page sans"><header><h1 class="page-title">Flow of the Project</h1></header><div class="page-body"><figure id="3599c3d6-cdfb-4328-b85a-888985dc96c5" class="image"><a href="Flow%20of%20the%20Project%203599c3d6cdfb4328b85a888985dc96c5/Untitled.png"><img style="width:1880px" src="Flow%20of%20the%20Project%203599c3d6cdfb4328b85a888985dc96c5/Untitled.png"/></a></figure><h2 id="6f74d788-8c25-4042-b977-b03ca4e4a550" class=""><strong>1. What is Instagram?</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#1.-What-is-Instagram?"><strong>#</strong></a></h2><p id="8c721490-d8fc-48e7-9656-5acee3e1594f" class="">Instagram is a social networking service that enables its users to upload and share their photos and videos with other users. Instagram users can choose to share information either publicly or privately. Anything shared publicly can be seen by any other user, whereas privately shared content can only be accessed by the specified set of people. Instagram also enables its users to share through many other social networking platforms, such as Facebook, Twitter, Flickr, and Tumblr.</p><p id="8692a5a2-edef-4528-b4bb-9f46fb9477ed" class="">We plan to design a simpler version of Instagram for this design problem, where a user can share photos and follow other users. The ‘News Feed’ for each user will consist of top photos of all the people the user follows.</p><h2 id="613fa510-907d-4e8c-93ef-c6439937c7b8" class=""><strong>2. Requirements and Goals of the System</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#2.-Requirements-and-Goals-of-the-System"><strong>#</strong></a></h2><p id="fb13ad08-f3ee-47ab-a593-f8bc8b7be2fb" class="">We’ll focus on the following set of requirements while designing Instagram:</p><p id="41c6d272-aeb5-4ca4-ba24-0f5e67cd2ba4" class=""><strong>Functional Requirements</strong></p><ol type="1" id="0c6419a9-288c-4912-8e81-82875a17d2dc" class="numbered-list" start="1"><li>Users should be able to upload/download/view photos.</li></ol><ol type="1" id="9853389e-71b1-4a63-baa4-5c876727e602" class="numbered-list" start="2"><li>Users can perform searches based on photo/video titles.</li></ol><ol type="1" id="ddbccb3f-f13c-4512-8314-d4760640b581" class="numbered-list" start="3"><li>Users can follow other users.</li></ol><ol type="1" id="fb437973-1fb3-4db8-bf80-f6924325d2d0" class="numbered-list" start="4"><li>The system should generate and display a user’s News Feed consisting of top photos from all the people the user follows.</li></ol><p id="d0cdf278-a793-4bdc-9d08-a0cc8fa9d376" class=""><strong>Non-functional Requirements</strong></p><ol type="1" id="6ee236e4-1324-4bd4-ab16-0aa1deeb26ce" class="numbered-list" start="1"><li>Our service needs to be highly available.</li></ol><ol type="1" id="318f4058-719e-43cc-a898-79e2eea90475" class="numbered-list" start="2"><li>The acceptable latency of the system is 200ms for News Feed generation.</li></ol><ol type="1" id="cb7080ca-6a64-472a-bdf7-a2a84131eaad" class="numbered-list" start="3"><li>Consistency can take a hit (in the interest of availability) if a user doesn’t see a photo for a while; it should be fine.</li></ol><ol type="1" id="de8a8de7-a6bf-42ea-8333-b27487f52083" class="numbered-list" start="4"><li>The system should be highly reliable; any uploaded photo or video should never be lost.</li></ol><p id="607774f0-b759-449f-9a90-91472e24b4d4" class=""><strong>Not in scope:</strong> Adding tags to photos, searching photos on tags, commenting on photos, tagging users to photos, who to follow, etc.</p><h2 id="c62d75d5-b703-47fd-acdc-b56f738691d0" class=""><strong>3. Some Design Considerations</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#3.-Some-Design-Considerations"><strong>#</strong></a></h2><p id="751776b8-0cee-4797-a7f9-8a63c06f1e2b" class="">The system would be read-heavy, so we will focus on building a system that can retrieve photos quickly.</p><ol type="1" id="5f046943-4c0f-47a9-9900-91fa84daafaf" class="numbered-list" start="1"><li>Practically, users can upload as many photos as they like; therefore, efficient management of storage should be a crucial factor in designing this system.</li></ol><ol type="1" id="22f3a710-ea61-4bc5-8c3a-7465103541f7" class="numbered-list" start="2"><li>Low latency is expected while viewing photos.</li></ol><ol type="1" id="7621b3ab-816d-4da7-8455-408da4ccf2c6" class="numbered-list" start="3"><li>Data should be 100% reliable. If a user uploads a photo, the system will guarantee that it will never be lost.</li></ol><h2 id="8a101214-b30a-435f-88fa-0786c6981a12" class=""><strong>4. Capacity Estimation and Constraints</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#4.-Capacity-Estimation-and-Constraints"><strong>#</strong></a></h2><ul id="a3c440b5-f0b6-4801-9e53-ac4ddca582fb" class="bulleted-list"><li style="list-style-type:disc">Let’s assume we have 500M total users, with 1M daily active users.</li></ul><ul id="77c40b3f-76a8-4c07-95f2-f73c2ea43196" class="bulleted-list"><li style="list-style-type:disc">2M new photos every day, 23 new photos every second.</li></ul><ul id="54e0eccd-d1bc-4d83-a40a-e36a702925de" class="bulleted-list"><li style="list-style-type:disc">Average photo file size =&gt; 200KB</li></ul><ul id="84781cdc-091c-4dda-9392-3d7e4c1aac32" class="bulleted-list"><li style="list-style-type:disc">Total space required for 1 day of photos</li></ul><p id="b4bdf967-80b6-4693-8c56-9d6512e062f3" class="">2M * 200KB =&gt; 400 GB</p><ul id="fef71baa-e35f-48de-8c55-2d0de7707119" class="bulleted-list"><li style="list-style-type:disc">Total space required for 10 years:</li></ul><p id="c6d875e7-fd95-46b9-9571-87d998ede712" class="">400GB * 365 (days a year) * 10 (years) ~= 1425TB</p><h2 id="8a3d8107-666d-4efb-b339-360895ec3e44" class=""><strong>5. High Level System Design</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#5.-High-Level-System-Design"><strong>#</strong></a></h2><p id="01e39c49-fa92-453e-8788-a1f8357bec83" class="">At a high-level, we need to support two scenarios, one to upload photos and the other to view/search photos. Our service would need some <a href="https://en.wikipedia.org/wiki/Object_storage">object storage</a> servers to store photos and some database servers to store metadata information about the photos.</p><h2 id="cb0ecb2e-e0c4-43d6-ba49-4656ac8d3a1e" class=""><strong>6. Database Schema</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#6.-Database-Schema"><strong>#</strong></a></h2><p id="55cc4c86-4ef8-449e-9c3d-b381b1cc1827" class="">💡     <em><strong> Defining the DB schema in the early stages of the interview would help to understand the data flow among various components and later would guide towards data partitioning.</strong></em></p><p id="5d89f9ee-d7b2-4f59-8f1a-4ba2c96fb71c" class="">We need to store data about users, their uploaded photos, and the people they follow. The Photo table will store all data related to a photo; we need to have an index on (PhotoID, CreationDate) since we need to fetch recent photos first.</p><p id="bb7ba359-f4b8-44dd-9f5c-f5beb3fc465d" class="">A straightforward approach for storing the above schema would be to use an RDBMS like MySQL since we require joins. But relational databases come with their challenges, especially when we need to scale them. For details, please take a look at <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5728116278296576/">SQL vs. NoSQL</a>.</p><p id="259ed3e4-948d-48aa-ba3c-50ed603bf7fe" class="">We can store photos in a distributed file storage like <a href="https://en.wikipedia.org/wiki/Apache_Hadoop">HDFS</a> or <a href="https://en.wikipedia.org/wiki/Amazon_S3">S3</a>.</p><p id="f7842ac9-99b3-474d-87a9-ba787b40cd2e" class="">We can store the above schema in a distributed key-value store to enjoy the benefits offered by NoSQL. All the metadata related to photos can go to a table where the ‘key’ would be the ‘PhotoID’ and the ‘value’ would be an object containing PhotoLocation, UserLocation, CreationTimestamp, etc.</p><p id="43a9889d-17fb-4868-a65a-e920fbac056d" class="">If we go with a NoSQL database, we need an additional table to store the relationships between users and photos to know who owns which photo. Let’s call this table ‘UserPhoto’. We also need to store the list of people a user follows. Let’s call it ‘UserFollow’. For both of these tables, we can use a wide-column datastore like <a href="https://en.wikipedia.org/wiki/Apache_Cassandra">Cassandra</a>. For the ‘UserPhoto’ table, the ‘key’ would be ‘UserID’, and the ‘value’ would be the list of ‘PhotoIDs’ the user owns, stored in different columns. We will have a similar scheme for the ‘UserFollow’ table.</p><p id="d80669be-0b41-4d74-bb47-f4c2d84f59ec" class="">Cassandra or key-value stores, in general, always maintain a certain number of replicas to offer reliability. Also, in such data stores, deletes don’t get applied instantly; data is retained for certain days (to support undeleting) before getting removed from the system permanently.</p><h2 id="a918f7f7-dd41-48e0-82f1-0d46a54d4af4" class=""><strong>7. Data Size Estimation</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#7.-Data-Size-Estimation"><strong>#</strong></a></h2><p id="7cb689d5-15ff-40cc-b0a5-28cc1d3e0bd7" class="">Let’s estimate how much data will be going into each table and how much total storage we will need for 10 years.</p><p id="c385d250-494c-4c10-b9b7-c55d9cef6447" class=""><strong>User:</strong> Assuming each “int” and “dateTime” is four bytes, each row in the User’s table will be of 68 bytes:</p><p id="65166f5c-582f-4c0c-bae1-664df125681a" class="">UserID (4 bytes) + Name (20 bytes) + Email (32 bytes) + DateOfBirth (4 bytes) + CreationDate (4 bytes) + LastLogin (4 bytes) = 68 bytes</p><p id="ecba05b5-97b7-4f42-989f-b7a125804843" class="">If we have 500 million users, we will need 32GB of total storage.</p><p id="4ee3a6b8-8878-4b4d-bf92-2200e68eb809" class="">500 million * 68 ~= 32GB</p><p id="b79cddb6-d8e6-4a25-b108-8ef36f6a9d56" class=""><strong>Photo:</strong> Each row in Photo’s table will be of 284 bytes:</p><p id="7265acdb-9fee-4473-b7af-0c2ad08a425b" class="">PhotoID (4 bytes) + UserID (4 bytes) + PhotoPath (256 bytes) + PhotoLatitude (4 bytes) + PhotoLongitude(4 bytes) + UserLatitude (4 bytes) + UserLongitude (4 bytes) + CreationDate (4 bytes) = 284 bytes</p><p id="a6063558-96cb-4f22-9c59-99174592d971" class="">If 2M new photos get uploaded every day, we will need 0.5GB of storage for one day:</p><p id="fca42aa6-fc45-4e65-8925-eb6176a9bd47" class="">2M * 284 bytes ~= 0.5GB per day</p><p id="73668b52-562d-4316-8a9e-7cbb2483551e" class="">For 10 years we will need 1.88TB of storage.</p><p id="0aaeb52f-1502-45d3-a61d-a990d0d9c3a6" class=""><strong>UserFollow:</strong> Each row in the UserFollow table will consist of 8 bytes. If we have 500 million users and on average each user follows 500 users. We would need 1.82TB of storage for the UserFollow table:</p><p id="50aaa1e2-1d6b-4470-8887-30e972039ca5" class="">500 million users * 500 followers * 8 bytes ~= 1.82TB</p><p id="c6a7f3f0-e7e1-4f19-ab0b-998499ac6639" class="">Total space required for all tables for 10 years will be 3.7TB:</p><p id="f453a727-88c5-4273-93eb-5dde1120174d" class="">32GB + 1.88TB + 1.82TB ~= 3.7TB</p><h2 id="3f221104-a5b4-46eb-a537-f86b24ae8117" class=""><strong>8. Component Design</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#8.-Component-Design"><strong>#</strong></a></h2><p id="2fa32aff-c4b8-425e-adbc-78e60afb4876" class="">Photo uploads (or writes) can be slow as they have to go to the disk, whereas reads will be faster, especially if they are being served from cache.</p><p id="2601536d-c4ef-4270-9925-b944ec14c54b" class="">Uploading users can consume all the available connections, as uploading is a slow process. This means that ‘reads’ cannot be served if the system gets busy with all the ‘write’ requests. We should keep in mind that web servers have a connection limit before designing our system. If we assume that a web server can have a maximum of 500 connections at any time, then it can’t have more than 500 concurrent uploads or reads. To handle this bottleneck, we can split reads and writes into separate services. We will have dedicated servers for reads and different servers for writes to ensure that uploads don’t hog the system.</p><p id="9e2858c4-efa9-4328-9d17-f3d9da3d29db" class="">Separating photos’ read and write requests will also allow us to scale and optimize each of these operations independently.</p><h2 id="a999fa24-fb59-4256-92b2-8cfeaa6267a1" class=""><strong>9. Reliability and Redundancy</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#9.-Reliability-and-Redundancy"><strong>#</strong></a></h2><p id="7fd32dd2-b403-48a6-89f6-33f041875e09" class="">Losing files is not an option for our service. Therefore, we will store multiple copies of each file so that if one storage server dies, we can retrieve the photo from the other copy present on a different storage server.</p><p id="6f1453ad-ee73-4b4b-b052-0ccd3e627258" class="">This same principle also applies to other components of the system. If we want to have high availability of the system, we need to have multiple replicas of services running in the system so that even if a few services die down, the system remains available and running. Redundancy removes the single point of failure in the system.</p><p id="8548e7b5-ac4f-4a7f-867b-148e957a9aeb" class="">If only one instance of a service is required to run at any point, we can run a redundant secondary copy of the service that is not serving any traffic, but it can take control after the failover when the primary has a problem.</p><p id="1172e9f3-dd51-49e4-93c9-cccb777fb66a" class="">Creating redundancy in a system can remove single points of failure and provide a backup or spare functionality if needed in a crisis. For example, if there are two instances of the same service running in production and one fails or degrades, the system can failover to the healthy copy. Failover can happen automatically or require manual intervention.</p><h2 id="067a7325-efef-44e0-8cf6-c98525d9248e" class=""><strong>10. Data Sharding</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#10.-Data-Sharding"><strong>#</strong></a></h2><p id="9e30595a-d959-4e56-88db-a0ba65e62bd6" class="">Let’s discuss different schemes for metadata sharding:</p><p id="d76bf41b-0979-428a-9c5b-ac3766e643cf" class=""><strong>a. Partitioning based on UserID</strong> Let’s assume we shard based on the ‘UserID’ so that we can keep all photos of a user on the same shard. If one DB shard is 1TB, we will need four shards to store 3.7TB of data. Let’s assume, for better performance and scalability, we keep 10 shards.</p><p id="390ce201-8035-4eaa-a09c-b91e4106ecd8" class="">So we’ll find the shard number by <strong>UserID % 10</strong> and then store the data there. To uniquely identify any photo in our system, we can append the shard number with each PhotoID.</p><p id="da81490f-1287-46ca-a6cb-e48a10986a94" class=""><strong>How can we generate PhotoIDs?</strong> Each DB shard can have its own auto-increment sequence for PhotoIDs, and since we will append ShardID with each PhotoID, it will make it unique throughout our system.</p><p id="480d4c48-e568-443f-9b2c-6e1d787e1a46" class=""><strong>What are the different issues with this partitioning scheme?</strong></p><ol type="1" id="fc41df09-6460-424b-95bf-290cc132df52" class="numbered-list" start="1"><li>How would we handle hot users? Several people follow such hot users, and a lot of other people see any photo they upload.</li></ol><ol type="1" id="79b41646-7d5d-4232-8308-bb5fcc6a240f" class="numbered-list" start="2"><li>Some users will have a lot of photos compared to others, thus making a non-uniform distribution of storage.</li></ol><ol type="1" id="9d88d41c-d4ce-4b6b-96b4-11ccfccaf7da" class="numbered-list" start="3"><li>What if we cannot store all pictures of a user on one shard? If we distribute photos of a user onto multiple shards, will it cause higher latencies?</li></ol><ol type="1" id="a2452c3e-7863-4dfe-9a77-6d716f73061c" class="numbered-list" start="4"><li>Storing all photos of a user on one shard can cause issues like unavailability of all of the user’s data if that shard is down or higher latency if it is serving high load etc.</li></ol><p id="0201deb6-7c5a-4355-97e6-bf1fddb30325" class=""><strong>b. Partitioning based on PhotoID</strong> If we can generate unique PhotoIDs first and then find a shard number through “PhotoID % 10”, the above problems will have been solved. We would not need to append ShardID with PhotoID in this case, as PhotoID will itself be unique throughout the system.</p><p id="86ca0748-b7c4-4f04-862d-116fb28cf023" class=""><strong>How can we generate PhotoIDs?</strong> Here, we cannot have an auto-incrementing sequence in each shard to define PhotoID because we need to know PhotoID first to find the shard where it will be stored. One solution could be that we dedicate a separate database instance to generate auto-incrementing IDs. If our PhotoID can fit into 64 bits, we can define a table containing only a 64 bit ID field. So whenever we would like to add a photo in our system, we can insert a new row in this table and take that ID to be our PhotoID of the new photo.</p><p id="2464d607-d024-4fe4-9df8-dc4b524fd4a6" class=""><strong>Wouldn’t this key generating DB be a single point of failure?</strong> Yes, it would be. A workaround for that could be to define two such databases, one generating even-numbered IDs and the other odd-numbered. For MySQL, the following script can define such sequences:</p><pre id="cb4c7de0-c56e-49a3-b5df-dd3e8118d126" class="code code-wrap"><code>KeyGeneratingServer1:
+auto-increment-increment = 2
+auto-increment-offset = 1
+
+KeyGeneratingServer2:
+auto-increment-increment = 2
+auto-increment-offset = 2
+</code></pre><p id="1c752a4f-bd8e-488c-8c09-56f3236e1e80" class="">We can put a load balancer in front of both of these databases to round-robin between them and to deal with downtime. Both these servers could be out of sync, with one generating more keys than the other, but this will not cause any issue in our system. We can extend this design by defining separate ID tables for Users, Photo-Comments, or other objects present in our system.</p><p id="957c5c78-de4e-4f7d-a2ae-a1a06b930974" class=""><strong>Alternately,</strong> we can implement a ‘key’ generation scheme similar to what we have discussed in <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5668600916475904">Designing a URL Shortening service like TinyURL</a>.</p><p id="2fa22c04-7d49-4418-912b-8aba39f6f826" class=""><strong>How can we plan for the future growth of our system?</strong> We can have a large number of logical partitions to accommodate future data growth, such that in the beginning, multiple logical partitions reside on a single physical database server. Since each database server can have multiple database instances running on it, we can have separate databases for each logical partition on any server. So whenever we feel that a particular database server has a lot of data, we can migrate some logical partitions from it to another server. We can maintain a config file (or a separate database) that can map our logical partitions to database servers; this will enable us to move partitions around easily. Whenever we want to move a partition, we only have to update the config file to announce the change.</p><h2 id="30c23801-c669-4da5-82a0-5aa0df403ccd" class=""><strong>11. Ranking and News Feed Generation</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#11.-Ranking-and-News-Feed-Generation"><strong>#</strong></a></h2><p id="60c4ae56-b45e-4a5b-9485-a9ec7b2d9415" class="">To create the News Feed for any given user, we need to fetch the latest, most popular, and relevant photos of the people the user follows.</p><p id="3c51e2ca-c8a1-4db8-a49f-983b63bda70a" class="">For simplicity, let’s assume we need to fetch the top 100 photos for a user’s News Feed. Our application server will first get a list of people the user follows and then fetch metadata info of each user’s latest 100 photos. In the final step, the server will submit all these photos to our ranking algorithm, which will determine the top 100 photos (based on recency, likeness, etc.) and return them to the user. A possible problem with this approach would be higher latency as we have to query multiple tables and perform sorting/merging/ranking on the results. To improve the efficiency, we can pre-generate the News Feed and store it in a separate table.</p><p id="ff2da226-5587-45c9-ae1d-83e3047a567d" class=""><strong>Pre-generating the News Feed:</strong> We can have dedicated servers that are continuously generating users’ News Feeds and storing them in a ‘UserNewsFeed’ table. So whenever any user needs the latest photos for their News-Feed, we will simply query this table and return the results to the user.</p><p id="a843fcee-0816-43b5-a93f-c61a77c8c94b" class="">Whenever these servers need to generate the News Feed of a user, they will first query the UserNewsFeed table to find the last time the News Feed was generated for that user. Then, new News-Feed data will be generated from that time onwards (following the steps mentioned above).</p><p id="1660c206-95c2-4c89-8933-496ade160d92" class=""><strong>What are the different approaches for sending News Feed contents to the users?</strong></p><p id="27c285e5-9a98-4f0c-948d-64c7213e3441" class=""><strong>1. Pull:</strong> Clients can pull the News-Feed contents from the server at a regular interval or manually whenever they need it. Possible problems with this approach are a) New data might not be shown to the users until clients issue a pull request b) Most of the time, pull requests will result in an empty response if there is no new data.</p><p id="454d26ae-d07f-4968-ae84-691c0bbf2792" class=""><strong>2. Push:</strong> Servers can push new data to the users as soon as it is available. To efficiently manage this, users have to maintain a <a href="https://en.wikipedia.org/wiki/Push_technology#Long_polling">Long Poll</a> request with the server for receiving the updates. A possible problem with this approach is a user who follows a lot of people or a celebrity user who has millions of followers; in this case, the server has to push updates quite frequently.</p><p id="db53ee42-c416-4778-a42a-309ab296bcb1" class=""><strong>3. Hybrid:</strong> We can adopt a hybrid approach. We can move all the users who have a high number of followers to a pull-based model and only push data to those who have a few hundred (or thousand) follows. Another approach could be that the server pushes updates to all the users not more than a certain frequency and letting users with a lot of updates to pull data regularly.</p><p id="6b821150-2c07-4645-b46b-7d7bcd02f62e" class="">For a detailed discussion about News-Feed generation, take a look at <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5641332169113600">Designing Facebook’s Newsfeed</a>.</p><h2 id="e14e4a01-6f97-42e4-b501-6fe1c8e66b8f" class=""><strong>12. News Feed Creation with Sharded Data</strong><a href="https://www.educative.io/courses/grokking-the-system-design-interview/m2yDVZnQ8lG#12.-News-Feed-Creation-with-Sharded-Data"><strong>#</strong></a></h2><p id="ea84d41d-b25b-4715-aa79-a8ff38baab09" class="">One of the most important requirements to create the News Feed for any given user is to fetch the latest photos from all people the user follows. For this, we need to have a mechanism to sort photos on their time of creation. To efficiently do this, we can make photo creation time part of the PhotoID. As we will have a primary index on PhotoID, it will be quite quick to find the latest PhotoIDs.</p><p id="86cb6297-bdb9-41cf-842d-952f7ce6e506" class="">We can use epoch time for this. Let’s say our PhotoID will have two parts; the first part will be representing epoch time, and the second part will be an auto-incrementing sequence. So to make a new PhotoID, we can take the current epoch time and append an auto-incrementing ID from our key-generating DB. We can figure out the shard number from this PhotoID ( PhotoID % 10) and store the photo there.</p><p id="e264bc99-d150-4f58-b41a-467f3dca96b2" class=""><strong>What could be the size of our PhotoID</strong>? Let’s say our epoch time starts today; how many bits we would need to store the number of seconds for the next 50 years?</p><p id="a1bf138b-0f07-4443-b8f7-49c004ec2e90" class="">86400 sec/day * 365 (days a year) * 50 (years) =&gt; 1.6 billion seconds</p><p id="00c2d395-30bb-42c0-8b87-c5010dd5705f" class="">We would need 31 bits to store this number. Since, on average, we are expecting 23 new photos per second, we can allocate 9 additional bits to store the auto-incremented sequence. So every second, we can store (2^9 =&gt; 512)(29=&gt;512) new photos. We are allocating 9 bits for the sequence number which is more than what we require; we are doing this to get a full byte number (as 40 bits = 5 bytes40<em>b</em><em>i</em><em>t</em><em>s</em>=5<em>b</em><em>y</em><em>t</em><em>e</em><em>s</em>). We can reset our auto-incrementing sequence every second.</p><p id="1eebcb1e-d280-47a7-b0dd-54988608807b" class="">We will discuss this technique under ‘Data Sharding’ in <a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5741031244955648">Designing Twitter</a>.</p></div></article></body></html>
